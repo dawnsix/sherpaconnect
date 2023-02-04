@@ -1,10 +1,10 @@
 /** @type {import('./$types').PageLoad} */
 
-export function load({ params }) {
+export function load() {
     return {
       post: {
-        title: `Title for ${params.slug} goes here`,
-        content: `Content for ${params.slug} goes here`
+        title: `Title for xx goes here`,
+        content: `Content for xx goes here`
       }
     };
   }
