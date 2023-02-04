@@ -2,10 +2,13 @@
 <script lang="ts">
 	import type { PageData } from "./$types"
 
-
 	export let data: PageData
 
 </script>
+
+<div class="w-screen h-screen flex justify-center mt-8">
+	<h1 id="hp-hdr">Welcome home.</h1>
+</div>
 
 <style lang="postcss">
 	figure {
