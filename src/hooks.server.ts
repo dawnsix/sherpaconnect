@@ -7,8 +7,8 @@ export const handle: Handle = async({ event, resolve }) => {
 
     event.locals.sb = supabaseClient
     event.locals.session = session
+
+    console.log(session?.user)
     
     return resolve(event)
 }
-
-console.log('server hook running')

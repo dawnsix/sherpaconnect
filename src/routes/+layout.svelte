@@ -30,7 +30,7 @@
 
 </script>
 
-<title>Pariah Carry</title>
+<title>Sherpa Pro - Destiny 2 carry services</title>
 
 <Modal />
 
@@ -41,7 +41,7 @@
 				
 			</svelte:fragment>
 				 <div>
-					<h1 class="flex items-center text-5xl font-extrabold text-pink-700">PARIAH<span class="text-blue-100 bg-blue-800 text-2xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">CARRY</span></h1>
+					<h1 class="flex items-center text-5xl font-extrabold text-pink-700">SHERPA<span class="text-blue-100 bg-blue-800 text-2xl font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ml-2">PRO</span></h1>
 				 </div>
 			<svelte:fragment slot="trail">
 				
@@ -53,19 +53,21 @@
 		<NavRail session={data.session}/>
 
 	</svelte:fragment>
+
 	<!-- Router Slot -->
 	<slot />
 	<!-- ---- / ---- -->
+	
 	<svelte:fragment slot="footer">
 
-	<footer class="text-center text-white">
-	  
-		<div class="text-center text-gray-700 p-8" style="background-color: rgba(0, 0, 0, 0.2);">
-		  <a class="text-gray-800" href="https://youtu.be/FuX5_OWObA0">Copyright: Bleanis© 2023</a>
-		  <br />
-		  <LightSwitch class="mt-1"/>
-		</div>
-	  </footer>
+		<footer class="text-center text-white">
+		
+			<div class="text-center text-gray-700 p-8" style="background-color: rgba(0, 0, 0, 0.2);">
+			<a class="text-gray-800" href="https://youtu.be/FuX5_OWObA0">Copyright: Bleanis© 2023</a>
+			<br />
+			<LightSwitch class="mt-1"/>
+			</div>
+		</footer>
 
 	</svelte:fragment>
 </AppShell>
