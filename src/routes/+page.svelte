@@ -8,8 +8,8 @@
 
 <div class="flex justify-center mt-8">
 	{#if data.session}
-	<h1 id="hp-hdr">Welcome <span class="text-pink-700">
-		{data.session.user.user_metadata.username}</span></h1>
+	<h1 id="hp-hdr">Welcome <span class="text-pink-700 font-bold text-6xl">
+		{data.session.user.user_metadata.username}</span>!</h1>
 	{:else}
 	<h1 id="hp-hdr">Welcome to Sherpa Pro</h1>
 	<h3>β</h3>

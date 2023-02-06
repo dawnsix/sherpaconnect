@@ -2,6 +2,7 @@
 	import '@skeletonlabs/skeleton/themes/theme-skeleton.css';
 	import '@skeletonlabs/skeleton/styles/all.css';
 	import '../app.postcss';
+	import NProgress from 'nprogress';
 
 	import { supabaseClient } from '$lib/supabaseClient'
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
@@ -9,12 +10,30 @@
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import { invalidateAll } from '$app/navigation'
 	import { onMount } from 'svelte'
+	import { navigating } from '$app/stores';
 	import type { PageData } from "./$types"
 
 	// component imports
 	import NavRail from '$lib/components/navrail.svelte';
+	
+	// package styles
+	import 'nprogress/nprogress.css';
 
 	export let data: PageData
+
+	NProgress.configure({
+		minimum: 0.16,
+		showSpinner: false
+	});
+ 
+	$: {
+		if ($navigating) {
+			NProgress.start();
+		}
+		if (!$navigating) {
+			NProgress.done();
+		}
+	}
 
 	onMount(() => {
 			const {
@@ -31,8 +50,6 @@
 </script>
 
 <title>Sherpa Pro - Destiny 2 carry services</title>
-
-<Modal />
 
 <AppShell>
 	<svelte:fragment slot="header">
@@ -63,7 +80,7 @@
 		<footer class="text-center text-white">
 		
 			<div class="text-center text-gray-700 p-8" style="background-color: rgba(0, 0, 0, 0.2);">
-			<a class="text-gray-800" href="https://youtu.be/FuX5_OWObA0">Copyright: Bleanis© 2023</a>
+			<a class="text-gray-800" href="https://youtu.be/Rlij_2kNv-s">Copyright: Bleanis© 2023</a>
 			<br />
 			<LightSwitch class="mt-1"/>
 			</div>
