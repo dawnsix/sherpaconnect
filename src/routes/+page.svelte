@@ -11,7 +11,7 @@
 	<h1 id="hp-hdr">Welcome <span class="text-pink-700 font-bold text-6xl">
 		{data.session.user.user_metadata.username}</span>!</h1>
 	{:else}
-	<h1 id="hp-hdr">Welcome to Sherpa Pro</h1>
+	<h1 id="hp-hdr">Welcome to RaidCarry</h1>
 	<h3>β</h3>
 	{/if}
 </div>

@@ -57,18 +57,37 @@ export const actions: Actions = {
         }
         
         // unique username check
-        const query = await locals.sb
+        const usernameQuery = await locals.sb
             .from('profiles')
             .select()
             .eq('username', body.username)
 
-        if(query.data[0]?.username) {
-            const { psw, pswrepeat,username, ...rest } = body
+        if(usernameQuery.data[0]?.username) {
+            const { psw, pswrepeat, ...rest } = body
             return {
                 data: rest,
                 formErrors: { 
                     fieldErrors: { 
                         usernameTaken: 'Username is taken' 
+                    }
+                }
+            }
+        }
+
+        const emailQuery = await locals.sb
+            .from('profiles')
+            .select()
+            .eq('email', body.email)
+
+        console.log(JSON.stringify(emailQuery))
+
+        if(emailQuery.data[0]?.username) {
+            const { psw, pswrepeat, ...rest } = body
+            return {
+                data: rest,
+                formErrors: { 
+                    fieldErrors: { 
+                        emailTaken: 'An account with this email already exists' 
                     }
                 }
             }
@@ -81,6 +100,7 @@ export const actions: Actions = {
                     options: {
                         data: {
                             username: body.username as string,
+                            email: body.email as string,
                         }
                     }
                 })

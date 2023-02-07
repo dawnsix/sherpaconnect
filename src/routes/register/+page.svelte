@@ -32,6 +32,10 @@
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" id="email" value={form?.data.email ?? ''} class="input-error" required>
           <span class="text-xs text-red-700">{form.formErrors.fieldErrors.email}</span>
+          {:else if form?.formErrors.fieldErrors.emailTaken}
+          <label for="email"><b>Email</b></label>
+          <input type="text" placeholder="Enter Email" name="email" id="email" value={form?.data.email ?? ''} class="input-error" required>
+          <span class="text-xs text-red-700">{form.formErrors.fieldErrors.emailTaken}</span>
           {:else}
           <label for="email"><b>Email</b></label>
           <input type="text" placeholder="Enter Email" name="email" id="email" value={form?.data.email ?? ''} required>
