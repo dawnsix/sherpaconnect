@@ -3,6 +3,10 @@ import type { RequestHandler } from "./$types";
 
 export const POST: RequestHandler = async ({ locals }) => {
 
+    if(!locals.session) {
+        throw redirect(303, "/")
+    }
+
     const { error: err } = await locals.sb.auth.signOut()
 
     if (err) {

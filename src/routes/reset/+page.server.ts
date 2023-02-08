@@ -1,5 +1,6 @@
 import type { Actions } from "./$types"
 import { error, redirect, fail } from '@sveltejs/kit'
+import { env } from '$env/dynamic/public'
 import { hostDomain } from '$lib/constants'
 import z from "zod"
 
@@ -24,13 +25,16 @@ export const actions: Actions = {
             }
         }
 
+        if(!locals.sb) {
+            throw redirect(303, '/')
+        }
+
         const { data, error: err } = await locals.sb.auth.resetPasswordForEmail(
             body.email,
-            { redirectTo: hostDomain + '/resetpass' }
+            { redirectTo: env.PUBLIC_REDIRECT_HOST + '/resetpass' }
         )
 
         if(err) {
-            console.log(err)
             return {
                 error: "We encountered an issue. Please try again later."
             }

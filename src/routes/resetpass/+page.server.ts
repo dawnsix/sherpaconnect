@@ -2,8 +2,10 @@ import type { Actions } from "./$types"
 import { error, redirect } from '@sveltejs/kit'
 import z from "zod"
 
+
 export const actions: Actions = {
     default: async ({ request, locals }) => {
+
         const body = Object.fromEntries(await request.formData())
 
         const updatePassSchema = z
@@ -37,13 +39,18 @@ export const actions: Actions = {
             }
         }
 
+        if(!locals.session) {
+            throw redirect(303, "/")
+        }
+
         const { data, error: err } = await locals.sb.auth.updateUser({
             password: body.rstpsw
-          })
+        })
 
         if(err) {
-            console.log(err)
-            throw error(500, '/')
+            return {
+                error: "We encountered an issue. Please try again later."
+            }
         }
 
         throw redirect(303, '/')
