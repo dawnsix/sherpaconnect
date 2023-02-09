@@ -30,7 +30,8 @@ export const actions: Actions = {
                     .string({ required_error: 'Password is required' })
                     .min(6, { message: 'Password must be at least 6 characters' })
                     .max(32, { message: 'Password must be less than 32 characters' })
-                    .regex(RegExp('(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\[-+_!@#$%^&*.,?])'), {message: 'Password must contain at least 1 special char, 1 uppercase, and 1 lowercase character'})
+                    .regex(RegExp('(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\[-+_!@#$%^&*.,?])'), 
+                        {message: 'Password must contain at least 1 special char, 1 uppercase, and 1 lowercase character'})
                     .trim(),
                 pswrepeat: z
                     .string({ required_error: 'Password is required' })
