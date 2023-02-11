@@ -32,7 +32,7 @@
 <Modal />
   
   <div class="flex flex-row h-full">
-    <div class="w-1/2">
+    <div class="lg:w-1/2">
       <form action="reset" method="POST" class="p-10">
           <div use:focusTrap={true}>
             <h1>Password reset</h1>
@@ -52,7 +52,7 @@
           </div>
         </form> 
       </div>
-      <div class="w-1/2 bg-pink-700">
+      <div class="w-1/2 bg-pink-700 invisible lg:visible">
           
       </div>
     </div>
