@@ -19,7 +19,7 @@ export const actions: Actions = {
                 username: z
                     .string({ required_error: 'Username is required' })
                     .min(1, { message: 'Username is required' })
-                    .max(25, { message: 'Username must be less than 64 characters' })
+                    .max(25, { message: 'Username must be less than 25 characters' })
                     .trim(),
                 email: z
                     .string({ required_error: 'Email is required' })

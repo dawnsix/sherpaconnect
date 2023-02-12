@@ -12,7 +12,6 @@
 		{data.session.user.user_metadata.username}</span>!</h1>
 	{:else}
 	<h1 id="hp-hdr">Welcome to PaidRaid</h1>
-	<h3>β</h3>
 	{/if}
 </div>
 
