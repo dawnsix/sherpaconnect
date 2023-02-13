@@ -2,6 +2,7 @@
     import type { TableSource } from '@skeletonlabs/skeleton';
     import { tableMapperValues } from '@skeletonlabs/skeleton';
     import { Table } from '@skeletonlabs/skeleton';
+    import { fade, blur, fly, slide, scale } from 'svelte/transition'
 
     export let data: any;
 
@@ -23,4 +24,6 @@
 <p class="italic">TEMP: dump post data from db into skeleton table</p>
 <br />
 
-<Table source={postTable} interactive={true} on:selected={mySelectionHandler} />
+<div in:blur="{{ duration: 300 }}">
+    <Table source={postTable} interactive={true} on:selected={mySelectionHandler} />
+</div>

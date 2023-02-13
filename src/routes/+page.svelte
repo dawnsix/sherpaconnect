@@ -1,40 +1,43 @@
 
 <script lang="ts">
 	import type { PageData } from "./$types"
+	import { fade, blur, fly, slide, scale } from 'svelte/transition'
 
 	export let data: PageData
 
 </script>
 
-<div class="flex justify-center mt-8">
-	{#if data.session}
-	<h1 id="hp-hdr">Welcome <span class="text-pink-700 font-bold text-6xl">
-		{data.session.user.user_metadata.username}</span>!</h1>
-	{:else}
-	<h1 id="hp-hdr">Welcome to PaidRaid</h1>
-	{/if}
-</div>
+<div in:blur="{{ duration: 300 }}">
+	<div class="flex justify-center mt-8">
+		{#if data.session}
+		<h1 id="hp-hdr" transition:blur>Welcome <span class="text-pink-700 font-bold text-6xl">
+			{data.session.user.user_metadata.username}</span>!</h1>
+		{:else}
+		<h1 id="hp-hdr">Welcome to PaidRaid</h1>
+		{/if}
+	</div>
 
-<br />
-<div class="flex justify-center">
-	<table>
-		<th class="[&>*]: border-solid-white border-2">
-			<h3>TODO:</h3>
-		</th>
-		<tr >
-			<td>&#9734; create home page default</td>
-		</tr>
-		<tr>
-			<td>&#9734; create authenticated users dashboard</td>
-		</tr>
-		<tr>
-			<td>&#9734; add post delete policy in db</td>
-		</tr>
-		<tr>
-			<td>&#9734; scroll triggered lazy loading on posts</td>
-		</tr>
-		<tr>
-			<td>&#9734; fight my neighbour</td>
-		</tr>
-	</table>
+	<br />
+	<div class="flex justify-center">
+		<table>
+			<th class="[&>*]: border-solid-white border-2">
+				<h3>TODO:</h3>
+			</th>
+			<tr >
+				<td>&#9734; create home page default</td>
+			</tr>
+			<tr>
+				<td>&#9734; create authenticated users dashboard</td>
+			</tr>
+			<tr>
+				<td>&#9734; add post delete policy in db</td>
+			</tr>
+			<tr>
+				<td>&#9734; scroll triggered lazy loading on posts</td>
+			</tr>
+			<tr>
+				<td>&#9734; fight my neighbour</td>
+			</tr>
+		</table>
+	</div>
 </div>
