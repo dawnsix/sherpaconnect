@@ -15,22 +15,26 @@
 	{/if}
 </div>
 
-<style lang="postcss">
-	figure {
-		@apply flex relative flex-col;
-	}
-	figure svg,
-	.img-bg {
-		@apply w-64 h-64 md:w-80 md:h-80;
-	}
-	.img-bg {
-		@apply bg-gradient-to-r from-primary-300 to-warning-300;
-		@apply absolute z-[-1] rounded-full blur-[64px];
-		animation: pulse 5s cubic-bezier(0, 0, 0, 0.5) infinite;
-	}
-	@keyframes pulse {
-		50% {
-			transform: scale(1.5);
-		}
-	}
-</style>
+<br />
+<div class="flex justify-center">
+	<table>
+		<th class="[&>*]: border-solid-white border-2">
+			<h3>TODO:</h3>
+		</th>
+		<tr >
+			<td>&#9734; create home page default</td>
+		</tr>
+		<tr>
+			<td>&#9734; create authenticated users dashboard</td>
+		</tr>
+		<tr>
+			<td>&#9734; add post delete policy in db</td>
+		</tr>
+		<tr>
+			<td>&#9734; scroll triggered lazy loading on posts</td>
+		</tr>
+		<tr>
+			<td>&#9734; fight my neighbour</td>
+		</tr>
+	</table>
+</div>
