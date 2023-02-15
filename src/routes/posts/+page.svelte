@@ -4,13 +4,13 @@
     import { TabGroup, Tab } from '@skeletonlabs/skeleton';
 
     export let data: any;
-    let tabSet: number = 0;
 
     let getPosts = async () => {
 
         let res = await supabaseClient
             .from('posts')
-            .select('title, desc, username, price')
+            .select('title, desc, username, price, created_at')
+            .order('created_at',  { ascending: false });
 
         return res.data
     }
@@ -21,29 +21,59 @@
 
 {#await getPostsPromise}
     <div class="grid place-items-center">
+        <!--<h2 class="pt-5"><b>Loading</b></h2>-->
         <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     </div>
 {:then posts}
 
+  <div class="flex flex-row h-full h-10">
+    <button class="border-solid border-2 w-1/4 ml-2">
+	    <span>TRIALS OF OSIRIS</span>
+    </button>
+    <button class="border-solid border-2 w-1/4">
+	    <span>RAID</span>
+    </button>
+    <button class="border-solid border-2 w-1/4">
+	    <span>NIGHTFALL</span>
+    </button>
+    <button class="border-solid border-2 w-1/4 mr-2">
+	    <span>GRIND</span>
+    </button>
+  </div>
+
+
     {#each posts as post, idx}
+
     <div class="card variant-glass p-4 m-2 h-40" in:fly={{
             x:-60,
             delay: 50 + idx * 50
         }}>
         
         <div class="flex flex-row h-full">
-            <div class="lg:w-4/5">
-                <h2 class="text-pink-700 font-bold">{post.title}</h2>
-                <hr/>
 
-                {JSON.stringify(post)}
-            </div>
-            <div class="w-1/5 bg-pink-700">
-                <span class="align-middle"><h2>${post.price}</h2></span>
-            </div>
+          <!-- first cell -->
+          <div class="lg:w-1/6 bg-white">
+              <h2 class="text-pink-700 font-bold">LOGO</h2>
+          </div>
+
+
+          <!-- second cell -->
+          <div class="lg:w-4/6 mx-2">
+              <h2 class="text-pink-700 font-bold">{post.title}</h2>
+              <hr/>
+
+              <span>Post created by: {JSON.stringify(post.username)}</span>
+        </div>
+
+          <!-- third cell -->
+          <div class="w-1/6 bg-pink-700">
+              <span class="align-middle"><h2>${post.price}</h2></span>
+          </div>
+
           </div>
 
     </div>
+
     {/each}
 
 {/await}
