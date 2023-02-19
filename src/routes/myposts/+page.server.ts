@@ -1,7 +1,7 @@
 import { supabaseClient } from '$lib/supabaseClient';
 import { error, redirect } from '@sveltejs/kit';
  
-/** @type {import('./$types').PageServerLoad} */
+/** @type {import('./$types').Locals} */
 export async function load({ locals }) {
 
     let {data: posts, error: err} = await supabaseClient

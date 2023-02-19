@@ -67,6 +67,7 @@
 					<div class="ml-1">
 						<svg width="146.973" height="58.105" viewBox="0 0 146.973 58.105" xmlns="http://www.w3.org/2000/svg"><g id="svgGroup" stroke-linecap="round" fill-rule="evenodd" font-size="9pt" stroke="#000000" stroke-width="0.25mm" fill="#ff00d4" style="stroke:#000000;stroke-width:0.25mm;fill:#ff00d4"><path d="M 112.793 10.254 L 105.957 10.254 L 105.957 44.434 L 92.285 58.105 L 92.285 0 L 146.973 0 L 146.973 44.434 L 133.301 44.434 L 133.301 10.254 L 126.465 10.254 L 126.465 44.434 L 112.793 44.434 L 112.793 10.254 Z M 37.598 17.09 L 37.598 10.254 L 30.762 10.254 L 30.762 34.18 L 37.598 34.18 L 37.598 27.344 L 51.27 27.344 L 51.27 44.434 L 17.09 44.434 L 17.09 0 L 51.27 0 L 51.27 17.09 L 37.598 17.09 Z M 88.867 44.434 L 54.688 44.434 L 54.688 0 L 88.867 0 L 88.867 44.434 Z M 68.359 10.254 L 68.359 34.18 L 75.195 34.18 L 75.195 10.254 L 68.359 10.254 Z M 13.672 34.18 L 13.672 44.434 L 0 44.434 L 0 34.18 L 13.672 34.18 Z" vector-effect="non-scaling-stroke"/></g></svg>
 					</div>
+					<h3> [IN DEV]</h3>
 				</div>
 			</svelte:fragment>
 
@@ -93,7 +94,7 @@
 		<footer class="text-center text-white">
 		
 			<div class="text-center text-gray-700 p-4" style="background-color: rgba(0, 0, 0, 0.2);">
-			<span class="dark:text-white text-black text-xs">© 2023 <a href="http://tibetanbuddhistencyclopedia.com/en/images/thumb/f/f8/5056_n.jpg/250px-5056_n.jpg">Bleanis LLC</a> - Powered by YourMum</span>
+			<span class="dark:text-white text-black text-xs">© 2023 <a href="http://tibetanbuddhistencyclopedia.com/en/images/thumb/f/f8/5056_n.jpg/250px-5056_n.jpg">Bleanis LLC</a> - Powered by SvelteKit</span>
 			<br />
 			<p><span class="dark:text-white text-black text-xs">PAIDRAID.COM 2023</span></p>
 			<LightSwitch class="mt-1"/>
