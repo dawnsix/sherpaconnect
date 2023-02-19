@@ -1,19 +1,15 @@
-import type { PageServerLoad } from "./$types"
+import { supabaseClient } from '$lib/supabaseClient';
+ 
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ locals }) {
 
-export const load: PageServerLoad = async({ locals }) => {
-
-    let { data: posts, error: err } = await locals.sb
+    let {data: posts, error: err} = await supabaseClient
         .from('posts')
-        .select('title, desc, username, price')
+        .select()
+        .order('created_at',  { ascending: false });
 
-        if(err) {
-            return { 
-                data: "engaging in dungoofed protocol"
-            }
-        }
 
     return {
-        postData: posts
-    }    
+        posts: posts
+    };
 }
-

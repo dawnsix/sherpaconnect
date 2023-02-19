@@ -1,16 +1,20 @@
 <script lang="ts">
     import { focusTrap } from '@skeletonlabs/skeleton';
-  import { attr, select_value } from 'svelte/internal';
+    import { attr, select_value } from 'svelte/internal';
 
+    export let data: any;
     export let form: any;
 
-    let platformTarget: string = "ps";
+    let { formState } = data
+    let { tgtId } = data
+
+    let platformTarget: string = formState ? formState.platform : "ps";
 
     let categories = [
-      {key: 'trials', value: 'Trials of Osiris'},
-      {key: 'raid', value: 'Raid'},
-      {key: 'nightfall', value: 'Nightfall'},
-      {key: 'grind', value: 'Strikes / Grind'}
+      { key: 'trials', value: 'Trials of Osiris' },
+      { key: 'raid', value: 'Raid' },
+      { key: 'nightfall', value: 'Nightfall' },
+      { key: 'grind', value: 'Strikes / Grind' }
     ]
     
     $: psbg = platformTarget === "ps" ? "bg-pink-700" : ""
@@ -21,13 +25,16 @@
   
   <div class="flex flex-row h-full">
     <div class="lg:w-1/2">
-      <form action="/createpost" method="POST" class="p-10">
+      <form action="/editpost" method="POST" class="p-10">
           <div use:focusTrap={true}>
-            <h1>Create post</h1>
-            <p>Enter your details to create a carry ticket...</p>
+            <h1>Edit post</h1>
+            <p>Enter your details to edit your ticket...</p>
             <hr>
             
-            {#if form?.formErrors?.fieldErrors.postTitle}
+            {#if formState}
+              <label for="postTitle"><b>Title</b></label>
+              <input type="text" placeholder="" value={formState.title} name="postTitle" id="postTitle" required>
+            {:else if form?.formErrors?.fieldErrors.postTitle}
               <label for="postTitle"><b>Title</b></label>
               <input type="text" class="input-error" placeholder="" name="postTitle" id="postTitle" value={form?.data?.postTitle ?? ''} required>
               <span class="text-xs text-red-700 ml-3">{form?.formErrors?.fieldErrors.postTitle}</span>
@@ -50,8 +57,12 @@
             </div>
             
             <input type="hidden" id="platform" name="platform" value="{platformTarget}">
+            <input type="hidden" id="targetId" name="targetId" value="{tgtId ?? form?.data?.targetId}">
 
-            {#if form?.formErrors?.fieldErrors.gamertag}
+            {#if formState}
+              <label for="gamertag"><b>Gamertag</b></label>
+              <input type="text" placeholder="" value={formState.gamertag} name="gamertag" id="gamertag" required>
+            {:else if form?.formErrors?.fieldErrors.gamertag}
               <label for="gamertag"><b>Gamertag</b></label>
               <input type="text" class="input-error" placeholder="" name="gamertag" id="gamertag" value={form?.data?.gamertag ?? ''} required>
               <span class="text-xs text-red-700 ml-3">{form?.formErrors?.fieldErrors.gamertag}</span>
@@ -60,8 +71,12 @@
               <input type="text" placeholder="" value={form?.data?.gamertag ?? ''} name="gamertag" id="gamertag" required>
             {/if}
 
-            {#if form?.formErrors?.fieldErrors.category}
-
+            {#if formState}
+              <label for="category"><b>Category</b></label>
+              <select name="category" id="category" value={formState.type}>
+                {#each categories as cat}<option value="{cat.key}">{cat.value}</option>{/each}
+              </select> 
+            {:else if form?.formErrors?.fieldErrors.category}
               <label for="category"><b>Category</b></label>
               <select name="category" id="category" value={form?.data?.category ?? 'trials'}>
                 {#each categories as cat}<option value="{cat.key}">{cat.value}</option>{/each}
@@ -74,7 +89,10 @@
               </select> 
             {/if}
         
-            {#if form?.formErrors?.fieldErrors.postDescription}
+            {#if formState}
+              <label for="postDescription"><b>Description</b></label>
+              <textarea class="textarea h-60" placeholder="Kings fall looking for 1, Quick trials run, etc." value={formState.desc} name="postDescription" id="postDescription" required />
+            {:else if form?.formErrors?.fieldErrors.postDescription}
               <label for="postDescription"><b>Description</b></label>
               <textarea class="textarea h-60 input-error" placeholder="Kings fall looking for 1, Quick trials run, etc." value={form?.data?.postDescription ?? ''} name="postDescription" id="postDescription" required />
               <span class="text-xs text-red-700 ml-3">{form?.formErrors?.fieldErrors.postDescription}</span>
@@ -86,7 +104,10 @@
             <div class="flex flex-row h-full">
               <div class="lg:w-1/2">
 
-                {#if form?.formErrors?.fieldErrors.endtime}
+                {#if formState}
+                  <label for="endtime"><b>Offer end time</b></label>
+                  <input type="time" class="mr-1" placeholder="" value={formState.lifespan} name="endtime" id="endtime" required>
+                {:else if form?.formErrors?.fieldErrors.endtime}
                   <label for="endtime"><b>Offer end time</b></label>
                   <input type="time" class="mr-1 input-error" placeholder="" value={form?.data?.endtime ?? ''} name="endtime" id="endtime" required>
                   <span class="text-xs text-red-700 ml-3">{form?.formErrors?.fieldErrors.endtime}</span>
@@ -98,7 +119,10 @@
               </div>
               <div class="lg:w-1/2">
               
-                {#if form?.formErrors?.fieldErrors.price}
+                {#if formState}
+                  <label for="price"><b>Price ($)</b></label>
+                  <input type="number" class="ml-1" placeholder="$00.00" value={formState.price} name="price" id="price" required>
+                {:else if form?.formErrors?.fieldErrors.price}
                   <label for="price"><b>Price ($)</b></label>
                   <input type="number" min="1" step="any" class="ml-1 input-error" placeholder="$00.00" value={form?.data?.price ?? ''} name="price" id="price" required>
                   <span class="text-xs text-red-700 ml-3">{form?.formErrors?.fieldErrors.price}</span>
@@ -111,7 +135,9 @@
             </div>
 
             <br />
-            <button type="submit" class="btn variant-filled-primary btn-base mt-3 mb-1 w-64">Create post</button>
+            <button type="submit" class="btn variant-filled-primary btn-base mt-3 mb-1 w-64">Update post</button>
+            <br />
+            <button type="button" on:click={() => { window.location.href = "/myposts" }} class="btn variant-filled-primary btn-base w-64">Cancel</button>
           </div>
       </form> 
     </div>
