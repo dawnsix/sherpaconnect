@@ -7,6 +7,7 @@
 	import { supabaseClient } from '$lib/supabaseClient'
 	import { AppShell, AppBar } from '@skeletonlabs/skeleton';
 	import { Modal, modalStore } from '@skeletonlabs/skeleton';
+	import { Toast, toastStore } from '@skeletonlabs/skeleton';
 	import { LightSwitch } from '@skeletonlabs/skeleton';
 	import { invalidateAll } from '$app/navigation'
 	import { onMount } from 'svelte'
@@ -50,6 +51,7 @@
 </script>
 
 <title>Paid Raid - Destiny 2 carry services</title>
+<Toast />
 
 <AppShell>
 	<svelte:fragment slot="header">

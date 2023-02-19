@@ -1,11 +1,15 @@
-/*
-import type { PageServerLoad } from "./$types"
+import { supabaseClient } from '$lib/supabaseClient';
+ 
+/** @type {import('./$types').PageServerLoad} */
+export async function load({ locals }) {
 
-export const load: PageServerLoad = async({ locals, fetch }) => {
-    let res = await locals.sb
-            .from('posts')
-            .select('title, desc, username, price')
+    let {data: posts, error: err} = await supabaseClient
+        .from('posts')
+        .select()
+        .order('created_at',  { ascending: false });
 
-        return res
+
+    return {
+        posts: posts
+    };
 }
-*/

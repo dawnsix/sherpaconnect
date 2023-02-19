@@ -1,5 +1,6 @@
 
 <script lang="ts">
+	import { supabaseClient } from '$lib/supabaseClient'
 	import type { PageData } from "./$types"
 	import { fade, blur, fly, slide, scale } from 'svelte/transition'
 
@@ -21,23 +22,8 @@
 	<div class="flex justify-center">
 		<table>
 			<th class="[&>*]: border-solid-white border-2">
-				<h3>TODO:</h3>
+				<h3>{data.session?.user.id ?? 'brrr'}</h3>
 			</th>
-			<tr >
-				<td>&#9734; create home page default</td>
-			</tr>
-			<tr>
-				<td>&#9734; create authenticated users dashboard</td>
-			</tr>
-			<tr>
-				<td>&#9734; add post delete policy in db</td>
-			</tr>
-			<tr>
-				<td>&#9734; scroll triggered lazy loading on posts</td>
-			</tr>
-			<tr>
-				<td>&#9734; fight my neighbour</td>
-			</tr>
 		</table>
 	</div>
 </div>

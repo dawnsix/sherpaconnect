@@ -3,15 +3,37 @@ import { fail, redirect } from '@sveltejs/kit'
 import type { Actions, PageServerLoad } from "./$types"
 import z from "zod"
 
-export const load: PageServerLoad = async({ locals }) => {
+export const load: PageServerLoad = async({ locals, url }) => {
+
     if(!locals.session)
         throw redirect(303, '/login')
+
+    let editPost = null;
+    const targetId = url.searchParams.get('id') ?? null;
+    if(targetId) {
+        let {data: post, error: err} = await locals.sb
+            .from('posts')
+            .select()
+            .eq('user_id', locals.session.user.id)
+            .eq('id', targetId)
+
+        if(post && post.length > 0) {
+            editPost = post[0]
+        }
+    }
+
+    return {
+        formState: editPost,
+        tgtId: targetId
+    }
 }
 
 export const actions: Actions = {
     default: async ({ request, locals }) => {
         
         const body = Object.fromEntries(await request.formData())
+        console.log('submitted form:')
+        console.log(body)
 
         //TODO: verify validation from api client
         const postSchema = z
@@ -69,7 +91,24 @@ export const actions: Actions = {
             }
         }
 
-        const { data, error: err } = await locals.sb
+        // delete original post
+        console.log('deleting old post')
+        console.log(body.targetId)
+        const { error: errDelete } = await locals.sb
+            .from('posts')
+            .delete()
+            .eq('id', body.targetId)
+
+        if (errDelete) {            
+            return fail(500, {
+                message: "Server error. Please try again later.",
+                formErrors: { fieldErrors: true }
+            })
+        }
+
+        // create new post
+        console.log('creating new post')
+        const { error: err } = await locals.sb
             .from('posts')
             .insert([{ 
                     username: locals.session.user.user_metadata.username,
