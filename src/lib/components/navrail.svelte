@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { AppRail, AppRailTile, dataTableHandler } from '@skeletonlabs/skeleton';
-    import type { ModalSettings, ModalComponent } from '@skeletonlabs/skeleton';
-  	import { modalStore } from '@skeletonlabs/skeleton';
+    import { AppRail, AppRailTile } from '@skeletonlabs/skeleton';
 
 	export let session: any
 

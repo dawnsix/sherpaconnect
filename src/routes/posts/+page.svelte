@@ -1,68 +1,46 @@
 <script lang="ts">
-    import { fly } from 'svelte/transition'
+  import TabGroup from '$lib/components/tabgroup.svelte';
+	import Tab from '$lib/components/tab.svelte';
+  import PostCard from '$lib/components/postcard.svelte';
 
-    export let data: PageData;
 
-    let { posts } = data;
-    $: ({ posts } = data);
+  export let data: any;
 
-    let categories = [
-      "All Events",
-      "Trials of Osiris",
-      "Raid",
-      "Nightfall",
-      "Grind",]
-    
+  let tabSet: number = 0;
+
+  let { posts } = data;
+  $: ({ posts } = data);
+
+  let categories = [
+    "all events",
+    "nightfall",
+    "raid",
+    "trials",
+    "grind"
+  ]
+
+  let targetType: string = categories[0]
+  $: filterPosts = posts.filter(function (item: PostCard) {
+    return targetType === categories[0] ? item : item.type === targetType
+  });
+
 </script>
 
-  <div class="flex flex-row h-full h-10">
-    {#each categories as cat}
-    <button class="border-solid border-2 w-1/5">
-	    <span>{cat}</span>
-    </button>
+<div class="card variant-glass p-4 space-y-4">
+  <TabGroup>
+    
+    {#each categories as cat, idx}
+    <Tab bind:group={tabSet} name={cat} value={idx} 
+      on:click={() => { targetType = cat }}>{cat}</Tab>
     {/each}
-  </div>
-
-  {#each posts as post, idx}
-
-  <div class="card variant-glass p-4 m-2 h-40" in:fly={{
-          x:-60,
-          delay: 50 + idx * 50
-      }}>
+  
+    <svelte:fragment slot="panel">
       
-      <div class="flex flex-row h-full">
+      {#each filterPosts as postItem, index}
+        <PostCard post={postItem} idx={index} />
+      {/each}
 
-        <!-- first cell -->
-        <div class="lg:w-1/6 bg-white">
-            <p class="text-pink-700 font-bold">{post.gamertag}</p>
-            <p class="text-pink-700 font-bold">{post.platform}</p>
-            <h2 class="text-pink-700 font-bold">LOGO</h2>
-        </div>
-
-
-        <!-- second cell -->
-        <div class="lg:w-4/6 mx-2">
-            <h2 class="text-pink-700 font-bold">{post.title}</h2>
-            <hr/>
-            <span><p>Owner: {post.username}</p></span>
-            <span><p>Category: {post.type}</p></span>
-            <span><p>Available until: {post.lifespan}</p></span>
-            <span><p>Description: {post.desc}</p></span>
-      </div>
-
-        <!-- third cell -->
-        <div class="w-1/6 bg-pink-700">
-            <span class="align-middle"><h2>${post.price}</h2></span>
-            <hr />
-            {#if post.username === data.session?.user.user_metadata.username}
-              <p></p>
-            {:else}
-              <button class="btn text-black bg-white hover:bg-pink-500 mt-2 fload-left">Accept offer</button>
-            {/if}
-        </div>
-
-        </div>
-
-  </div>
-
-  {/each}
+    </svelte:fragment>
+    
+  </TabGroup>
+</div>
