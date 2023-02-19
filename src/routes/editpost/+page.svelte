@@ -9,6 +9,7 @@
     let { tgtId } = data
 
     let platformTarget: string = formState ? formState.platform : "ps";
+    platformTarget = form?.data?.platform ? form?.data?.platform : platformTarget;
 
     let categories = [
       { key: 'trials', value: 'Trials of Osiris' },

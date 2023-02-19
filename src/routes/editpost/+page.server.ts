@@ -32,8 +32,6 @@ export const actions: Actions = {
     default: async ({ request, locals }) => {
         
         const body = Object.fromEntries(await request.formData())
-        console.log('submitted form:')
-        console.log(body)
 
         //TODO: verify validation from api client
         const postSchema = z
@@ -92,7 +90,6 @@ export const actions: Actions = {
         }
 
         // delete original post
-        console.log('deleting old post')
         console.log(body.targetId)
         const { error: errDelete } = await locals.sb
             .from('posts')
@@ -107,7 +104,6 @@ export const actions: Actions = {
         }
 
         // create new post
-        console.log('creating new post')
         const { error: err } = await locals.sb
             .from('posts')
             .insert([{ 
