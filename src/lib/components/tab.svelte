@@ -31,7 +31,7 @@
 	/** Provide classes to style each tab's padding styles. */
 	export let padding: CssClasses = getContext('padding');
 	/** Provide classes to style each tab's box radius styles. */
-	export let rounded: CssClasses = getContext('rounded');
+	export let rounded: CssClasses = getContext('');
 
 	// Classes
 	const cBase = 'text-center cursor-pointer transition-colors duration-100';

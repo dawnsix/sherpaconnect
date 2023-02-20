@@ -59,7 +59,7 @@
 
 <div class="tab-group {classesBase}" data-testid="tab-group" on:click on:keypress on:keydown on:keyup>
 	<!-- Tab List -->
-	<div class="tab-list {classesList}" role="tablist" aria-labelledby={labelledby}>
+	<div class="tab-list {classesList} justify-center" role="tablist" aria-labelledby={labelledby}>
 		<slot />
 	</div>
 	<!-- Tab Panel -->
