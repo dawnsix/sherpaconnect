@@ -1,5 +1,5 @@
 <script lang="ts">
-  import TabGroup from '$lib/components/tabgroup.svelte';
+  import TabGroup from '$lib/components/tabGroup.svelte';
 	import Tab from '$lib/components/tab.svelte';
   import PostCard from '$lib/components/postcard.svelte';
 
@@ -12,7 +12,7 @@
   $: ({ posts } = data);
 
   let categories = [
-    "all events",
+    "All Events",
     "nightfall",
     "raid",
     "trials",
@@ -24,6 +24,10 @@
     return targetType === categories[0] ? item : item.type === targetType
   });
 
+  function capFirst(word: string) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
 </script>
 
 <div class="card variant-glass p-4 space-y-4">
@@ -31,9 +35,9 @@
     
     {#each categories as cat, idx}
     <Tab bind:group={tabSet} name={cat} value={idx} 
-      on:click={() => { targetType = cat }}>{cat}</Tab>
+      on:click={() => { targetType = cat }}>{capFirst(cat)}</Tab>
     {/each}
-  
+    
     <svelte:fragment slot="panel">
       
       {#each filterPosts as postItem, index}
