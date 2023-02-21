@@ -32,12 +32,12 @@
 
 <div class="card variant-glass p-4 space-y-4">
   <TabGroup>
-    
+  
     {#each categories as cat, idx}
     <Tab bind:group={tabSet} name={cat} value={idx} 
       on:click={() => { targetType = cat }}>{capFirst(cat)}</Tab>
     {/each}
-    
+
     <svelte:fragment slot="panel">
       
       {#each filterPosts as postItem, index}
