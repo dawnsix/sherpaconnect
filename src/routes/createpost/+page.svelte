@@ -5,10 +5,9 @@
     import { any } from 'zod';
 
     export let form: any;
-    console.log(form)
 
     let platformTarget: string = form?.data?.platform ? form.data.platform : "ps";
-    let subclassSingle: string = form?.data?.subclass ? form.data.subclass : "";
+    let subclassSingle: string = form?.data?.subclass ? form.data.subclass : "hunter";
 
     let categories = [
       {key: 'trials', value: 'Trials of Osiris'},

@@ -9,8 +9,6 @@
     let { formState } = data
     let { tgtId } = data
 
-    console.log(formState)
-
     let platformTarget: string = formState ? formState.platform : "ps";
     platformTarget = form?.data?.platform ? form?.data?.platform : platformTarget;
 
