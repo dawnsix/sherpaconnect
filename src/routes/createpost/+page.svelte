@@ -7,7 +7,7 @@
     export let form: any;
 
     let platformTarget: string = form?.data?.platform ? form.data.platform : "ps";
-    let subclassSingle: string = form?.data?.subclass ? form.data.subclass : "";
+    let subclassSingle: string = form?.data?.subclass ? form.data.subclass : "hunter";
 
     let categories = [
       {key: 'trials', value: 'Trials of Osiris'},
