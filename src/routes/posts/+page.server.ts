@@ -8,8 +8,12 @@ export async function load({ locals }) {
         .select()
         .order('created_at',  { ascending: false });
 
+    // Use defer here (streaming with promises)
+    // https://youtu.be/wTF9uunxSvA
 
     return {
         posts: posts
     };
 }
+
+  

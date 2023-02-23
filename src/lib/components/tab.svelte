@@ -81,6 +81,6 @@
 	<!-- Interface -->
 	<div class="tab-interface {classesInterface}">
 		{#if $$slots.lead}<div class="tab-lead"><slot name="lead" /></div>{/if}
-		<div class="tab-label font-bold text-1xl hover:text-pink-700"><slot /></div>
+		<div class="tab-label font-bold text-1xl hover:text-accent-400"><slot /></div>
 	</div>
 </label>

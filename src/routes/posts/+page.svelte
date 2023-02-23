@@ -22,9 +22,9 @@
   let targetType: string = categories[0]
   $: filterPosts = posts.filter(function (item: PostCard) {
     return targetType === categories[0] ? item : item.type === targetType
-  });
+  })
 
-  function capFirst(word: string) {
+  let capFirst = (word: string) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 

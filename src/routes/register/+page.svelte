@@ -70,7 +70,7 @@
         </div>
       </form> 
     </div>
-    <div class="w-1/2 bg-pink-700 invisible lg:visible">
+    <div class="w-1/2 bg-accent-400 invisible lg:visible">
         
     </div>
   </div>

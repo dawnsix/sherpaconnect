@@ -49,7 +49,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
               </svg>
               
-              
         </AppRailTile>
 
         {#if session}
@@ -60,7 +59,7 @@
               </svg>
                
         </AppRailTile>
-        <AppRailTile label="Logout" title="LoginTile" tag="a" class="bg-pink-500 text-black hover:bg-pink-400">
+        <AppRailTile label="Logout" title="LoginTile" tag="a" class="hover:bg-accent-400 dark:hover:bg-accent-400 hover:text-black">
             <form action="/logout" method="POST">
                 <button type="submit">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
@@ -71,7 +70,7 @@
               
         </AppRailTile>
         {:else}
-        <AppRailTile label="Login" title="LoginTile" tag="a" href="/login" class="bg-pink-500 text-black hover:bg-pink-400">
+        <AppRailTile label="Login" title="LoginTile" tag="a" href="/login" class="hover:bg-accent-400 dark:hover:bg-accent-400 hover:text-black">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9" />
               </svg>
