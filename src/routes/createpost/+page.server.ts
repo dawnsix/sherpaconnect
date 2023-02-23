@@ -12,7 +12,6 @@ export const actions: Actions = {
     default: async ({ request, locals }) => {
         
         const body = Object.fromEntries(await request.formData())
-        console.log(body)
 
         //TODO: verify validation from api client
         const postSchema = z
