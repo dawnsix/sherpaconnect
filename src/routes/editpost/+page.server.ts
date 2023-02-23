@@ -56,10 +56,12 @@ export const actions: Actions = {
                     //add more to this validation, need non-negative, etc
                     .string({ required_error: 'Valid price required'})
                     .regex(/^\$?[0-9]+\.?[0-9]?[0-9]?$/, { message: 'Price invalid'}),
-                endtime: z
+                subclass: z
+                    .string({ required_error: 'Subclass is required' })
+                /*endtime: z
                     .string({ required_error: 'End time is required' })
-                    .regex(/^([01][0-9]|2[0-3]):([0-5][0-9])$/, { message: "Invalid end time" })
-            }).superRefine(({ category, platform }, ctx) => {
+                    .regex(/^([01][0-9]|2[0-3]):([0-5][0-9])$/, { message: "Invalid end time" })*/
+            }).superRefine(({ category, platform, subclass }, ctx) => {
 
                 if (!["raid", "trials", "grind", "nightfall"].includes(category)) {
                     ctx.addIssue({
@@ -74,6 +76,14 @@ export const actions: Actions = {
                         code: 'custom',
                         message: 'Platform invalid',
                         path: ['platform']
+                    });
+                }
+
+                if(!["hunter", "warlock", "titan"].includes(subclass)) {
+                    ctx.addIssue({
+                        code: 'custom',
+                        message: 'Subclass invalid',
+                        path: ['Subclass']
                     });
                 }
             })
@@ -116,6 +126,8 @@ export const actions: Actions = {
                     platform: body.platform,
                     lifespan: body.endtime,
                     gamertag: body.gamertag,
+                    subclass: body.subclass,
+                    epoch: Date.now(),
                     user_id: locals.session?.user.id
                 },
         ])

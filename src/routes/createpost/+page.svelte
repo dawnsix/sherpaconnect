@@ -1,10 +1,14 @@
 <script lang="ts">
     import { focusTrap } from '@skeletonlabs/skeleton';
-  import { attr, select_value } from 'svelte/internal';
+    import { attr, select_value } from 'svelte/internal';
+    import { ListBox, ListBoxItem } from '@skeletonlabs/skeleton';
+    import { any } from 'zod';
 
     export let form: any;
+    console.log(form)
 
-    let platformTarget: string = "ps";
+    let platformTarget: string = form?.data?.platform ? form.data.platform : "ps";
+    let subclassSingle: string = form?.data?.subclass ? form.data.subclass : "";
 
     let categories = [
       {key: 'trials', value: 'Trials of Osiris'},
@@ -13,9 +17,14 @@
       {key: 'grind', value: 'Strikes / Grind'}
     ]
     
-    $: psbg = platformTarget === "ps" ? "bg-pink-700" : ""
-    $: xbbg = platformTarget === "xbox" ? "bg-pink-700" : ""
-    $: pcbg = platformTarget === "pc" ? "bg-pink-700" : ""
+    //hacks
+    $: psbg = platformTarget === "ps" ? "bg-accent-400 text-black" : ""
+    $: xbbg = platformTarget === "xbox" ? "bg-accent-400 text-black" : ""
+    $: pcbg = platformTarget === "pc" ? "bg-accent-400 text-black" : ""
+
+    $: htbg = subclassSingle === "hunter" ? "bg-accent-400 text-black" : ""
+    $: ttbg = subclassSingle === "titan" ? "bg-accent-400 text-black" : ""
+    $: wlbg = subclassSingle === "warlock" ? "bg-accent-400 text-black" : ""
 
   </script>
   
@@ -38,13 +47,13 @@
 
             <!--platform selector-->
             <div class="flex flex-row h-full h-20 py-5">
-              <button type="button" class="w-1/3 hover:bg-pink-700 {psbg}" on:click={() => { platformTarget = "ps" }}>
+              <button type="button" class="w-1/3 hover:bg-accent-400 hover:text-black {psbg}" on:click={() => { platformTarget = "ps" }}>
                 <span>PLAYSTATION</span>
               </button>
-              <button type="button" class="w-1/3 hover:bg-pink-700 {xbbg}" on:click={() => { platformTarget = "xbox" }}>
+              <button type="button" class="w-1/3 hover:bg-accent-400 hover:text-black {xbbg}" on:click={() => { platformTarget = "xbox" }}>
                 <span>XBOX</span>
               </button>
-              <button type="button" class="w-1/3 hover:bg-pink-700 {pcbg}" on:click={() => { platformTarget = "pc" }}>
+              <button type="button" class="w-1/3 hover:bg-accent-400 hover:text-black {pcbg}" on:click={() => { platformTarget = "pc" }}>
                 <span>PC</span>
               </button>
             </div>
@@ -83,9 +92,15 @@
               <textarea class="textarea h-60" placeholder="Kings fall looking for 1, Quick trials run, etc." value={form?.data?.postDescription ?? ''} name="postDescription" id="postDescription" required />
             {/if}
 
+            <br />
+            <br />
+            <hr />
+            <br />
+
             <div class="flex flex-row h-full">
               <div class="lg:w-1/2">
 
+                <!--
                 {#if form?.formErrors?.fieldErrors.endtime}
                   <label for="endtime"><b>Offer end time</b></label>
                   <input type="time" class="mr-1 input-error" placeholder="" value={form?.data?.endtime ?? ''} name="endtime" id="endtime" required>
@@ -94,8 +109,19 @@
                   <label for="endtime"><b>Offer end time</b></label>
                   <input type="time" class="mr-1" placeholder="" value={form?.data?.endtime ?? ''} name="endtime" id="endtime" required>
                 {/if}
+                -->
+
+                <label for="subclassDescription"><b>Your subclass</b></label>
+                <ListBox id="temp">
+                  <ListBoxItem class="hover:bg-accent-500 hover:text-black mr-2 {htbg}" bind:group={subclassSingle} on:click={() => { subclassSingle='hunter' }} name="medium" value="hunter">&#183; Hunter</ListBoxItem>
+                  <ListBoxItem class="hover:bg-accent-500 hover:text-black mr-2 {ttbg}" bind:group={subclassSingle} on:click={() => { subclassSingle='titan' }} name="medium" value="titan">&#183; Titan</ListBoxItem>
+                  <ListBoxItem class="hover:bg-accent-500 hover:text-black mr-2 {wlbg}" bind:group={subclassSingle} on:click={() => { subclassSingle='warlock' }} name="medium" value="warlock">&#183; Warlock</ListBoxItem>
+                </ListBox>
+
+                <input type="hidden" id="subclass" name="subclass" value="{subclassSingle}">
                 
               </div>
+              
               <div class="lg:w-1/2">
               
                 {#if form?.formErrors?.fieldErrors.price}
@@ -103,7 +129,7 @@
                   <input type="number" min="1" step="any" class="ml-1 input-error" placeholder="$00.00" value={form?.data?.price ?? ''} name="price" id="price" required>
                   <span class="text-xs text-red-700 ml-3">{form?.formErrors?.fieldErrors.price}</span>
                 {:else}
-                  <label for="price"><b>Price ($)</b></label>
+                  <label for="price"><b>Price (AUD)</b></label>
                   <input type="number" class="ml-1" placeholder="$00.00" value={form?.data?.price ?? ''} name="price" id="price" required>
                 {/if}
 
@@ -111,7 +137,8 @@
             </div>
 
             <br />
-            <button type="submit" class="btn variant-filled-primary btn-base mt-3 mb-1 w-64">Create post</button>
+            <hr />
+            <button type="submit" class="btn variant-filled-primary btn-base mt-3 mb-1 w-64 hover:bg-accent-400">Create post</button>
           </div>
       </form> 
     </div>

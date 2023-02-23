@@ -69,7 +69,7 @@
 <div class="flex flex-row h-full">
 
   <div class="w-full">
-      <h4 class="font-bold">[{post.gamertag}]<span class="text-pink-700">&#9733;{post.title}&#9733;</span></h4>
+      <h4 class="font-bold">[{post.gamertag}]<span class="text-accent-200 dark:text-accent-700">&#9733;{post.title}&#9733;</span></h4>
       <hr/>
       <span><p>Owner: {post.username}</p></span>
       <span><p>Category: {post.type}</p></span>
@@ -77,20 +77,20 @@
       <span><p>Description: {post.desc}</p></span>
   </div>
 
-  <div class="w-1/6 bg-pink-700">
-      <span class="align-middle"><p class="text-1xl">Asking price: ${post.price}</p></span>
+  <div class="w-1/6 bg-accent-500">
+      <span class="align-middle"><p class="text-1xl text-black">Asking price: ${post.price}</p></span>
       <hr />
 
       {#if post.username === $page?.data.session.user.user_metadata.username}
-        <div class="bg-pink-400 flex-1">
-          <button class="text-1xl"
+        <div class="bg-accent-300 flex-1">
+          <button class="text-1xl text-black"
             on:click={() => { handleEdit(post.id) }}> Edit post </button>
           <br />
-          <button class="text-1xl" 
+          <button class="text-1xl text-black" 
             on:click={() => { handleDelete(post.id) }}> Delete </button>
         </div>
       {:else}
-        <button class="btn text-black bg-white hover:bg-pink-500 mt-2 fload-left">Accept offer</button>
+        <button class="btn text-black bg-white hover:bg-accent-500 mt-2 fload-left">Accept offer</button>
       {/if}
   </div>
 
