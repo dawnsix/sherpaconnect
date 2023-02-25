@@ -21,7 +21,7 @@ jobs:
       - name: get playwrite test repo
         run: git clone https://github.com/dawnsix/paidraid-ci.git
       - name: cd into repo
-        run: cd paidraid-ci
+        run: cd ./paidraid-ci
       - name: list directory
         run: ls -la
       - name: set up test repo
