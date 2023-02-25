@@ -22,7 +22,6 @@ jobs:
         run: git clone https://github.com/dawnsix/paidraid-ci.git
       - name: cd into repo
         working-directory: ./paidraid-ci
-      - name: list directory
         run: ls -la
       - name: set up test repo
         run: npm ci
