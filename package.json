@@ -8,9 +8,11 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "test:unit": "vitest"
+    "test:unit": "vitest",
+    "test": "npx playwright test"
   },
   "devDependencies": {
+    "@playwright/test": "^1.31.1",
     "@skeletonlabs/skeleton": "^0.99.5",
     "@supabase/auth-helpers-sveltekit": "^0.8.7",
     "@supabase/supabase-js": "^2.7.0",

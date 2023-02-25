@@ -59,7 +59,7 @@
           {#if postedWhen(post) >= 60}
             <span class="text-sm text-gray-800 dark:text-gray-500">&nbsp;Posted over an hour ago</span>
           {:else if postedWhen(post) <= 5}
-            <span class="text-sm text-accent-300 dark:text-accent-500"><span>&#x1F7E2;</span> Posted {postedWhen(post)}m ago</span>
+            <span class="text-sm text-accent-300 dark:text-accent-500"><span class="animate-ping">&#x1F7E2;</span> Posted {postedWhen(post)}m ago</span>
           {:else}
             <span class="text-sm">&nbsp;Posted {postedWhen(post)}m ago</span>
           {/if}</p>
