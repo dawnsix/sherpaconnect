@@ -24,10 +24,14 @@ jobs:
         working-directory: ./paidraid-ci
         run: ls -la
       - name: set up test repo
+        working-directory: ./paidraid-ci
         run: npm install
       - name: set up playwright
+        working-directory: ./paidraid-ci
         run: npm install -D @playwright/test
       - name: Install playwright browsers
+        working-directory: ./paidraid-ci
         run: npx playwright install --with-deps
       - name: Run tests
-        run: npx playwright test
+        working-directory: ./paidraid-ci
+        run: npm run test
