@@ -37,3 +37,5 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
+      - name: Get statuscode
+        run: echo $?
