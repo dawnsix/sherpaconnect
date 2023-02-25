@@ -1,0 +1,39 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: playwright CI
+
+on:
+  push:
+    branches: [ "main, testing" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  tests_e2e:
+    name: Run end-to-end tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: npm ci
+      - name: Start app
+        run: npm run dev
+      - name: get playwrite test repo
+        run: git clone https://github.com/dawnsix/paidraid-ci.git
+      - name: cd into repo
+        working-directory: ./paidraid-ci
+        run: ls -la
+      - name: set up test repo
+        working-directory: ./paidraid-ci
+        run: npm install
+      - name: set up playwright
+        working-directory: ./paidraid-ci
+        run: npm install -D @playwright/test
+      - name: Install playwright browsers
+        working-directory: ./paidraid-ci
+        run: npx playwright install --with-deps
+      - name: Run tests
+        working-directory: ./paidraid-ci
+        run: npm run test
