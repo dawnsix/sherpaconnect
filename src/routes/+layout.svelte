@@ -50,7 +50,7 @@
 
 </script>
 
-<title>Paid Raid - Destiny 2 carry services</title>
+<title>Paid Raid - Destiny 2 carry services (test build)</title>
 <Toast />
 
 <AppShell>
