@@ -50,7 +50,7 @@ export const actions: Actions = {
                         path: ['category']
                     });
                 }
-
+                
                 if(!["ps", "xbox", "pc"].includes(platform)) {
                     ctx.addIssue({
                         code: 'custom',
