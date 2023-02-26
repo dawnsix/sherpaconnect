@@ -12,7 +12,7 @@ on:
 jobs:
   tests_e2e:
     name: Run end-to-end tests
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -51,11 +51,10 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
-      - name: Check root dir
-        run: ls -la
+
       - name: Check summary
         working-directory: ./paidraid-ci
-        run: ls -la
+        run: ls -laR test-results
       - name: Print summary
         working-directory: ./paidraid-ci
         run: cat summary.json
