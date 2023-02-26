@@ -33,8 +33,7 @@ jobs:
       - name: Set up test repo
         working-directory: ./paidraid-ci
         run: | 
-          npm i playwright@latest
-          npm playwright install-deps
+          npx playwright install --with-deps
           
       - name: Run tests
         working-directory: ./paidraid-ci
