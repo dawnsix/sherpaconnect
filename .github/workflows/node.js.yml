@@ -47,6 +47,8 @@ jobs:
       - name: Print pw config
         working-directory: ./paidraid-ci
         run: cat playwright.config.ts
+      - name: Check CI var
+        run: echo $CI
         
       - name: Run tests
         working-directory: ./paidraid-ci
@@ -54,7 +56,7 @@ jobs:
 
       - name: Check summary
         working-directory: ./paidraid-ci
-        run: ls -laR
+        run: ls -la
       - name: Print summary
         working-directory: ./paidraid-ci
         run: cat summary.json
