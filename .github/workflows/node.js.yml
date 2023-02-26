@@ -25,13 +25,11 @@ jobs:
           echo PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PUBLIC_SUPABASE_ANON_KEY }} >> .env
           echo PUBLIC_REDIRECT_HOST=${{ secrets.PUBLIC_REDIRECT_HOST }} >> .env
           cat .env
+          
       - name: Start app
         run: npm run dev &
       - name: get playwrite test repo
         run: git clone https://github.com/dawnsix/paidraid-ci.git
-      - name: print packages
-        working-directory: ./paidraid-ci
-        run: cat package.json
       - name: set up test repo
         working-directory: ./paidraid-ci
         run: | 
@@ -43,9 +41,19 @@ jobs:
       - name: Install playwright browsers
         working-directory: ./paidraid-ci
         run: npx playwright install --with-deps
+      - name: print packages
+        working-directory: ./paidraid-ci
+        run: cat package.json
+      - name: Print pw config
+        working-directory: ./paidraid-ci
+        run: cat playwright.config.ts
+        
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
+      - name: Check summary
+        working-directory: ./paidraid-ci
+        run: ls -la
       - name: Print summary
         working-directory: ./paidraid-ci
         run: cat summary.json
