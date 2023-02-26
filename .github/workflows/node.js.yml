@@ -29,9 +29,9 @@ jobs:
         run: npm run dev &
       - name: get playwrite test repo
         run: git clone https://github.com/dawnsix/paidraid-ci.git
-      - name: cd into repo
+      - name: print packages
         working-directory: ./paidraid-ci
-        run: ls -la
+        run: cat package.json
       - name: set up test repo
         working-directory: ./paidraid-ci
         run: npm install
@@ -44,9 +44,3 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
-      - name: Get src
-        working-directory: ./paidraid-ci
-        run: curl http://localhost:5173/ > src.txt
-      - name: Print src
-        working-directory: ./paidraid-ci
-        run: cat src.txt
