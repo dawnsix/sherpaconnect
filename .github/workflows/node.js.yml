@@ -18,6 +18,13 @@ jobs:
       - uses: actions/setup-node@v3
       - name: Install dependencies
         run: npm ci
+      - name: Create env file
+        run: |
+          touch .env
+          echo PUBLIC_SUPABASE_URL=${{ secrets.PUBLIC_SUPABASE_URL }} >> .env
+          echo PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PUBLIC_SUPABASE_ANON_KEY }} >> .env
+          echo PUBLIC_REDIRECT_HOST=${{ secrets.PUBLIC_REDIRECT_HOST }} >> .env
+          cat .env
       - name: Start app
         run: npm run dev &
       - name: get playwrite test repo
@@ -37,9 +44,6 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
-      - name: Get statuscode
-        working-directory: ./paidraid-ci
-        run: echo $?
       - name: Get src
         working-directory: ./paidraid-ci
         run: curl http://localhost:5173/ > src.txt
