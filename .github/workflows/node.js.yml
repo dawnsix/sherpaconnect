@@ -42,6 +42,7 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: | 
+          unset CI
           npm run test -- --list
           npm run test -- -x
 
