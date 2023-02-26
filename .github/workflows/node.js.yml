@@ -42,6 +42,7 @@ jobs:
         working-directory: ./paidraid-ci
         run: | 
           PWTEST_SKIP_TEST_OUTPUT=1
+          npx playwright install
           npx playwright test --list
           npx playwright test -x
 
