@@ -34,7 +34,9 @@ jobs:
         run: cat package.json
       - name: set up test repo
         working-directory: ./paidraid-ci
-        run: npm install
+        run: | 
+          npm install
+          npm install @butchmayhew/playwright-json-summary-reporter --save-dev
       - name: set up playwright
         working-directory: ./paidraid-ci
         run: npm install -D @playwright/test
@@ -44,3 +46,6 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
+      - name: Print summary
+        working-directory: ./paidraid-ci
+        run: cat summary.json
