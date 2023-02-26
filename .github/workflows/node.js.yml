@@ -41,18 +41,11 @@ jobs:
       - name: Install playwright browsers
         working-directory: ./paidraid-ci
         run: npx playwright install --with-deps
-      - name: print packages
-        working-directory: ./paidraid-ci
-        run: cat package.json
-      - name: Print pw config
-        working-directory: ./paidraid-ci
-        run: cat playwright.config.ts
-      - name: Check CI var
-        run: |
-          echo $CI
-          unset CI
-          echo $CI
         
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
+        
+      - name: Check status code
+        working-directory: ./paidraid-ci
+        run: echo $?
