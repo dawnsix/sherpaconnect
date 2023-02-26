@@ -54,7 +54,7 @@ jobs:
 
       - name: Check summary
         working-directory: ./paidraid-ci
-        run: ls -laR test-results
+        run: ls -laR playwright-report
       - name: Print summary
         working-directory: ./paidraid-ci
         run: cat summary.json
