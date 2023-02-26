@@ -42,4 +42,4 @@ jobs:
         run: echo $?
       - name: Print output
         working-directory: ./paidraid-ci
-        run: cat outout.txt
+        run: cat output.txt
