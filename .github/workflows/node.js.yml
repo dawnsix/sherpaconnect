@@ -37,11 +37,11 @@ jobs:
           npm install @butchmayhew/playwright-json-summary-reporter --save-dev
           npm install -D @playwright/test
           npx playwright install-deps
-          npx playwright install
           
       - name: Run tests
         working-directory: ./paidraid-ci
         run: | 
-          npm run test -- --list
-          npm run test -- -x
+          PWTEST_SKIP_TEST_OUTPUT=1
+          npx playwright test --list
+          npx playwright test -x
 
