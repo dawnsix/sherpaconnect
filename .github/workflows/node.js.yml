@@ -44,7 +44,9 @@ jobs:
         
       - name: Run tests
         working-directory: ./paidraid-ci
-        run: npm run test
+        run: |
+          npx playwright test --list
+          npx playwright test -x
         
       - name: Check status code
         working-directory: ./paidraid-ci
