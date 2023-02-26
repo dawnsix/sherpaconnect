@@ -48,15 +48,11 @@ jobs:
         working-directory: ./paidraid-ci
         run: cat playwright.config.ts
       - name: Check CI var
-        run: echo $CI
+        run: |
+          echo $CI
+          unset CI
+          echo $CI
         
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
-
-      - name: Check summary
-        working-directory: ./paidraid-ci
-        run: ls -la
-      - name: Print summary
-        working-directory: ./paidraid-ci
-        run: cat summary.json
