@@ -36,10 +36,13 @@ jobs:
         run: npx playwright install --with-deps
       - name: Run tests
         working-directory: ./paidraid-ci
-        run: npm run test > output.txt
+        run: npm run test
       - name: Get statuscode
         working-directory: ./paidraid-ci
         run: echo $?
-      - name: Print output
+      - name: Get src
         working-directory: ./paidraid-ci
-        run: cat output.txt
+        run: curl http://localhost:5173/ > src.txt
+      - name: Print src
+        working-directory: ./paidraid-ci
+        run: cat src.txt
