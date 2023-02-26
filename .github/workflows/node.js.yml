@@ -51,6 +51,8 @@ jobs:
       - name: Run tests
         working-directory: ./paidraid-ci
         run: npm run test
+      - name: Check root dir
+        run: ls -la
       - name: Check summary
         working-directory: ./paidraid-ci
         run: ls -la
