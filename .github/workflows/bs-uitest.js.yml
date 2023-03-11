@@ -18,6 +18,15 @@ jobs:
       - uses: actions/setup-node@v3
       - name: Install dependencies
         run: npm ci
+        
+      - name: Create env file
+        run: |
+          touch .env
+          echo PUBLIC_SUPABASE_URL=${{ secrets.PUBLIC_SUPABASE_URL }} >> .env
+          echo PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PUBLIC_SUPABASE_ANON_KEY }} >> .env
+          echo PUBLIC_REDIRECT_HOST=${{ secrets.PUBLIC_REDIRECT_HOST }} >> .env
+          cat .env
+          npm run dev &
      
       - name: get selenium test repo
         run: git clone https://github.com/dawnsix/js-selenium.git
@@ -32,6 +41,8 @@ jobs:
       - name: Set up test repo
         working-directory: ./js-selenium
         run: | 
+          mkdir data
+          echo ${{ secrets.BROWSERSTACK_DATA }} >> data/environment.js
           npm i
           
       - name: Run tests
