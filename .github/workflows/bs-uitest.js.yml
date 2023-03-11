@@ -38,11 +38,12 @@ jobs:
           echo ${{ secrets.BROWSERSTACK_USERNAME }} >> bs-template.yml
           mv bs-template.yml browserstack.yml
         
-      - name: Set up test repo
+      - name: Set up test repo + data
         working-directory: ./js-selenium
         run: | 
           mkdir data
           echo ${{ secrets.BROWSERSTACK_DATA }} >> data/environment.js
+          echo 'export const test = ' ${{ secrets.BROWSERSTACK_DATA }} >> data/environment.js
           npm i
           
       - name: Run tests
