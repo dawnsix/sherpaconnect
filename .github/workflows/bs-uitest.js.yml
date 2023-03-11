@@ -25,7 +25,6 @@ jobs:
       - name: Create browserstack config file
         working-directory: ./js-selenium
         run: |
-          working-directory: ./js-selenium
           echo ${{ secrets.BROWSERSTACK_KEY }} >> bs-template.yml
           echo ${{ secrets.BROWSERSTACK_USERNAME }} >> bs-template.yml
           mv bs-template.yml browserstack.yml
