@@ -38,17 +38,18 @@ jobs:
           echo ${{ secrets.BROWSERSTACK_USERNAME }} >> bs-template.yml
           echo 'buildName: sherpa-ci-'`date +%s` >> bs-template.yml
           mv bs-template.yml browserstack.yml
+          npm i
           echo
           cat browserstack.yml
           echo
-          npm i
-        
+          cat package.json
+          echo
+          
       - name: Set up test repo + data
         working-directory: ./js-selenium
         run: | 
           mkdir data
           echo ${{ secrets.BROWSERSTACK_DATA }} | base64 -d > data/environment.js
-          cat data/environment.js
           
       - name: Run tests
         working-directory: ./js-selenium
