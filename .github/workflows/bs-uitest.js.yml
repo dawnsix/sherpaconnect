@@ -43,8 +43,7 @@ jobs:
         working-directory: ./js-selenium
         run: | 
           mkdir data
-          echo ${{ secrets.BROWSERSTACK_DATA }} >> data/environment.js
-          echo 'export const test = { ' ${{ secrets.BROWSERSTACK_DATA }} '}' >> data/environment.js
+          echo ${{ secrets.BROWSERSTACK_DATA }} | base64 -d > data/environment.js
           cat data/environment.js
           
       - name: Run tests
