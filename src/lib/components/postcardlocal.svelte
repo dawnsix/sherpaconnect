@@ -118,6 +118,7 @@
   <hr />
   {#if post.username === $page?.data.session?.user.user_metadata.username}
     <button type="button" class="hover:text-accent-400 mt-2 pl-1 text-sm"  on:click={() => { handleEdit(post.id) }}>&#183; Edit post</button>
+    <br />
     <button type="button" class="hover:text-red-500 pl-1 text-sm"  on:click={() => { handleDelete(post.id) }}>&#183; Delete posts</button>
   {:else}
     <button type="button" class="hover:text-accent-400 pl-1 text-sm"><h5>Accept offer</h5></button>
