@@ -31,6 +31,7 @@
 		if ($navigating) {
 			NProgress.start();
 		}
+		
 		if (!$navigating) {
 			NProgress.done();
 		}

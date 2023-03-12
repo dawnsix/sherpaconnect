@@ -8,7 +8,7 @@
 
 </script>
 
-<div class="bg-red-500 flex flex-col h-screen" 
+<div class="flex flex-col h-screen" 
 	style="
 		background-size: auto 100%; 
 		background-image: url('https://cutewallpaper.org/28x/gypuz30ts/2433626945.jpg');
