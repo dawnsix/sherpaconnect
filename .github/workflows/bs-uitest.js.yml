@@ -45,6 +45,7 @@ jobs:
           cat package.json
           echo
           npm i
+          npm i -D browserstack-node-sdk
           
       - name: Set up test repo + data
         working-directory: ./js-selenium
