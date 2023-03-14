@@ -50,5 +50,4 @@ jobs:
           
       - name: Run tests
         working-directory: ./js-selenium
-        run: | 
-          npm run test-bs -- -g post
+        run: npm run test-bs -- -g post
