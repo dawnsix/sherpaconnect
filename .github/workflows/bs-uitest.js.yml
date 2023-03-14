@@ -41,6 +41,7 @@ jobs:
           cat browserstack.yml
           npm i
           npm list
+          npm run mocha --version
           
       - name: Set up test repo + data
         working-directory: ./js-selenium
