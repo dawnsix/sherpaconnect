@@ -38,6 +38,7 @@ jobs:
           echo ${{ secrets.BROWSERSTACK_USERNAME }} >> bs-template.yml
           echo 'buildName: sherpa-ci-'`date +%s` >> bs-template.yml
           mv bs-template.yml browserstack.yml
+          cat browserstack.yml
           npm i
           
       - name: Set up test repo + data
