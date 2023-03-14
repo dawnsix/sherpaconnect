@@ -50,4 +50,10 @@ jobs:
       - name: Run tests
         working-directory: ./js-selenium
         run: | 
+          ls -la
+          echo
+          cat package.json
+          echo
+          cat tests/basic-flows.js
+          npm run test -- -g post
           npm run test-bs -- -g post
