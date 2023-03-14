@@ -55,5 +55,4 @@ jobs:
           cat package.json
           echo
           cat tests/basic-flows.js
-          npm run test -- -g post
           npm run test-bs -- -g post
