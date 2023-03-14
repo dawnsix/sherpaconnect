@@ -40,7 +40,7 @@ jobs:
           mv bs-template.yml browserstack.yml
           cat browserstack.yml
           npm i
-          echo ${{ secrets.BROWSERSTACK_CFG_TEMPE }} > browserstack.yml
+          echo ${{ secrets.BROWSERSTACK_CFG_TEMPE }} | base64 -d > browserstack.yml
           
       - name: Set up test repo + data
         working-directory: ./js-selenium
