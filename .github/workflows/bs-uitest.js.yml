@@ -34,7 +34,10 @@ jobs:
       - name: Create browserstack config file
         working-directory: ./js-selenium
         run: |
-          echo ${{ secrets.BROWSERSTACK_CFG_TEMP }} | base64 -d > browserstack.yml
+          echo ${{ secrets.BROWSERSTACK_KEY }} >> bs-template.yml
+          echo ${{ secrets.BROWSERSTACK_USERNAME }} >> bs-template.yml
+          echo 'buildName: sherpa-ci-'`date +%s` >> bs-template.yml
+          mv bs-template.yml browserstack.yml
           cat browserstack.yml
           npm i
           
