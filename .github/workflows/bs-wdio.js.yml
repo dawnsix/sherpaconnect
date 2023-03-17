@@ -35,8 +35,8 @@ jobs:
       - name: Create wdio context vars config file
         working-directory: ./js-wdio-frame
         run: |
-          export BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_KEY }}
-          export BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}
+          export BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_KEY_VAR }}
+          export BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME_VAR }}
           export MOCHA_GREP=posts
           printenv
           npm i
