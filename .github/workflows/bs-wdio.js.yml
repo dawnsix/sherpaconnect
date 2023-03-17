@@ -1,0 +1,50 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: wdio CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  tests_e2e:
+    name: Run selenium UI tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Create env file
+        run: |
+          touch .env
+          echo PUBLIC_SUPABASE_URL=${{ secrets.PUBLIC_SUPABASE_URL }} >> .env
+          echo PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PUBLIC_SUPABASE_ANON_KEY }} >> .env
+          echo PUBLIC_REDIRECT_HOST=${{ secrets.PUBLIC_REDIRECT_HOST }} >> .env
+          cat .env
+          npm run dev &
+     
+      - name: get wdio test repo
+        run: git clone https://github.com/dawnsix/js-wdio-frame.git
+        
+      - name: Create browserstack config file
+        working-directory: .js-wdio-frame
+        run: |
+          export BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_KEY }}
+          export BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}
+          export MOCHA_GREP="posts"
+          npm i
+          
+      - name: Set up test repo + data
+        working-directory: .js-wdio-frame
+        run: | 
+          mkdir data
+          echo ${{ secrets.BROWSERSTACK_DATA }} | base64 -d > data/environment.js
+          
+      - name: Run tests
+        working-directory: .js-wdio-frame
+        run: npm run test-bs
