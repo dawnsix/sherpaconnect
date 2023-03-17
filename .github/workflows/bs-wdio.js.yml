@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: wdio CI
+name: wdio ci on browserstack
 
 on:
   push:
@@ -37,7 +37,6 @@ jobs:
         run: |
           echo "BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_KEY_VAR }}" >> $GITHUB_ENV
           echo "BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME_VAR }}" >> $GITHUB_ENV
-          echo "MOCHA_GREP=posts" >> $GITHUB_ENV
           npm i
           
       - name: Set up test repo + data
