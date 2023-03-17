@@ -37,7 +37,8 @@ jobs:
         run: |
           export BROWSERSTACK_ACCESS_KEY=${{ secrets.BROWSERSTACK_KEY }}
           export BROWSERSTACK_USERNAME=${{ secrets.BROWSERSTACK_USERNAME }}
-          export MOCHA_GREP="posts"
+          export MOCHA_GREP=posts
+          printenv
           npm i
           
       - name: Set up test repo + data
