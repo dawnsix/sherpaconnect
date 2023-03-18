@@ -24,7 +24,7 @@ jobs:
           echo PUBLIC_SUPABASE_URL=${{ secrets.PUBLIC_SUPABASE_URL }} >> .env
           echo PUBLIC_SUPABASE_ANON_KEY=${{ secrets.PUBLIC_SUPABASE_ANON_KEY }} >> .env
           echo PUBLIC_REDIRECT_HOST=${{ secrets.PUBLIC_REDIRECT_HOST }} >> .env
-          cat ./src/routes/page.server.ts
+          cat ./src/routes/+page.server.ts
           cat .env
           npm run dev &
           
